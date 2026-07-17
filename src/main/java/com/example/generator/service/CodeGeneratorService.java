@@ -8,6 +8,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.autoconfigure.jdbc.DataSourceProperties;
 import org.springframework.stereotype.Service;
 
+import java.util.Arrays;
+
 @Slf4j
 @Service
 @RequiredArgsConstructor
@@ -36,6 +38,12 @@ public class CodeGeneratorService {
                 .strategyConfig(builder -> {
                     if (targetTables != null && targetTables.length > 0) {
                         builder.addInclude(targetTables);
+                    }
+                    if (properties.getTablePrefix() != null && properties.getTablePrefix().length > 0) {
+                        builder.addTablePrefix(properties.getTablePrefix());
+                    }
+                    if (properties.getTableSuffix() != null && properties.getTableSuffix().length > 0) {
+                        builder.addTableSuffix(properties.getTableSuffix());
                     }
                     builder
                             .entityBuilder()

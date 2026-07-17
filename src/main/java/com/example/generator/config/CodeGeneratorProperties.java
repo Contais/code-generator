@@ -18,4 +18,8 @@ public class CodeGeneratorProperties {
     private String[] includeTables = {};
 
     private String[] excludeTables = {};
+
+    private String[] tablePrefix = {};
+
+    private String[] tableSuffix = {};
 }

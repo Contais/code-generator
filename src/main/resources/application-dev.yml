@@ -17,3 +17,7 @@ generator:
   author: generator
   output-dir: ./src/main/java
   include-tables: []
+  table-prefix:
+    - sys_
+    - t_
+  table-suffix: []

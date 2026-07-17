@@ -40,14 +40,19 @@ public class CodeGeneratorService {
                     builder
                             .entityBuilder()
                             .enableLombok()
+                            .javaTemplate("/templates/entity.java")
                             .mapperBuilder()
                             .enableMapperAnnotation()
+                            .mapperTemplate("/templates/mapper.java")
                             .serviceBuilder()
                             .formatServiceFileName("%sService")
                             .formatServiceImplFileName("%sServiceImpl")
+                            .serviceTemplate("/templates/service.java")
+                            .serviceImplTemplate("/templates/serviceImpl.java")
                             .controllerBuilder()
                             .enableRestStyle()
-                            .enableHyphenStyle();
+                            .enableHyphenStyle()
+                            .template("/templates/controller.java");
                 })
                 .templateEngine(new FreemarkerTemplateEngine())
                 .execute();

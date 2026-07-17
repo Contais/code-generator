@@ -14,4 +14,8 @@ generator:
   author: generator
   output-dir: ./generated-sources
   include-tables: []
+  table-prefix:
+    - sys_
+    - t_
   exclude-tables: []
+  plural-to-singular: true

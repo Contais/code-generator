@@ -22,6 +22,5 @@ import ${pkg};
 @RequiredArgsConstructor
 public class ${table.serviceImplName} extends ${superServiceImplClass}<${table.mapperName}, ${entity}> implements ${table.serviceName} {
 
-    private final ${table.mapperName} ${table.mapperName?uncap_first};
 
 }

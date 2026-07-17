@@ -22,7 +22,7 @@ import ${pkg};
 @Controller
 </#if>
 @RequiredArgsConstructor
-@RequestMapping<#if controllerMappingHyphenStyle?c == "true">("${controllerMappingHyphen}")</#if>
+@RequestMapping<#if controllerMappingHyphenStyle?c == "true">("/${controllerMappingHyphen}")</#if>
 public class ${table.controllerName} {
 
     private final ${table.serviceName} ${table.serviceName?uncap_first};

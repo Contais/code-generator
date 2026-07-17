@@ -7,6 +7,7 @@ import com.baomidou.mybatisplus.generator.engine.FreemarkerTemplateEngine;
 import com.example.generator.config.CodeGeneratorProperties;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.boot.autoconfigure.jdbc.DataSourceProperties;
 import org.springframework.stereotype.Service;
 
 import java.util.Collections;
@@ -17,11 +18,12 @@ import java.util.Collections;
 public class CodeGeneratorService {
 
     private final CodeGeneratorProperties properties;
+    private final DataSourceProperties dataSourceProperties;
 
     public void generate(String... tables) {
         String[] targetTables = (tables != null && tables.length > 0) ? tables : properties.getIncludeTables();
 
-        FastAutoGenerator.create(properties.getDatabaseUrl(), properties.getUsername(), properties.getPassword())
+        FastAutoGenerator.create(dataSourceProperties.getUrl(), dataSourceProperties.getUsername(), dataSourceProperties.getPassword())
                 .globalConfig(builder -> builder
                         .author(properties.getAuthor())
                         .outputDir(properties.getOutputDir())

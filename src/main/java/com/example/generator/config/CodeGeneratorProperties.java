@@ -15,14 +15,6 @@ public class CodeGeneratorProperties {
 
     private String outputDir = "./src/main/java";
 
-    private String databaseUrl = "jdbc:mysql://localhost:3306/your_database?useUnicode=true&characterEncoding=utf-8&serverTimezone=Asia/Shanghai";
-
-    private String username = "root";
-
-    private String password = "root";
-
-    private String driverClassName = "com.mysql.cj.jdbc.Driver";
-
     private String[] includeTables = {};
 
     private String[] excludeTables = {};

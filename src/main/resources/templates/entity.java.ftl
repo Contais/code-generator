@@ -29,20 +29,21 @@ import ${pkg};
 @NoArgsConstructor
 @AllArgsConstructor
 </#if>
-@TableName("${table.name}")
+@TableName("${table.name?lower_case}")
 public class ${entity} <#if entitySerialVersionUID?c == "true">implements Serializable</#if> {
 
 <#if entitySerialVersionUID?c == "true">
     @Serial
     private static final long serialVersionUID = 1L;
 </#if>
+
 <#list table.fields as field>
-<#if field.keyFlag?c == "true">
-    @TableId(value = "${field.name}", type = IdType.AUTO)
-</#if>
     /**
      * ${field.comment!}
      */
+<#if field.keyFlag?c == "true">
+    @TableId(value = "${field.name}", type = IdType.ASSIGN_ID)
+</#if>
     private ${field.propertyType} ${field.propertyName};
 
 </#list>

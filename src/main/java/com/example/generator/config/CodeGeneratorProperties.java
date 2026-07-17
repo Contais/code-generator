@@ -22,4 +22,6 @@ public class CodeGeneratorProperties {
     private String[] tablePrefix = {};
 
     private String[] tableSuffix = {};
+
+    private boolean pluralToSingular = true;
 }

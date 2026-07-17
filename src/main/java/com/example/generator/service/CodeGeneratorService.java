@@ -8,8 +8,6 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.autoconfigure.jdbc.DataSourceProperties;
 import org.springframework.stereotype.Service;
 
-import java.util.Arrays;
-
 @Slf4j
 @Service
 @RequiredArgsConstructor
@@ -49,6 +47,9 @@ public class CodeGeneratorService {
                             .entityBuilder()
                             .enableLombok()
                             .javaTemplate("/templates/entity.java")
+                            .nameConvert(properties.isPluralToSingular()
+                                    ? new PluralNameConverter(builder.build())
+                                    : null)
                             .mapperBuilder()
                             .enableMapperAnnotation()
                             .mapperTemplate("/templates/mapper.java")

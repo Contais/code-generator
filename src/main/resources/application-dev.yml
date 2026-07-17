@@ -19,5 +19,5 @@ generator:
   include-tables: []
   table-prefix:
     - sys_
-    - t_
   table-suffix: []
+  plural-to-singular: true

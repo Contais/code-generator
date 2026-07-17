@@ -2,11 +2,11 @@ package ${package.Service};
 
 import ${package.Entity}.${entity};
 import ${superServiceClassPackage};
-#if(${importServiceJavaPackages})
-#foreach(${pkg} in ${importServiceJavaPackages})
+<#if importServiceJavaPackages??>
+<#list importServiceJavaPackages as pkg>
 import ${pkg};
-#end
-#end
+</#list>
+</#if>
 
 /**
  * ${table.comment!} Service
@@ -14,8 +14,8 @@ import ${pkg};
  * @author ${author}
  * @since ${date}
  */
-#if(${generateService})
+<#if generateService?c == "true">
 public interface ${table.serviceName} extends ${superServiceClass}<${entity}> {
 
 }
-#end
+</#if>

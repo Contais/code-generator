@@ -1,25 +1,21 @@
 package ${package.Entity};
 
-#if(${entityLombokModel})
+<#if entityLombokModel?c == "true">
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.AllArgsConstructor;
-#end
-#if(${activeRecord})
+</#if>
 import com.baomidou.mybatisplus.annotation.*;
-#end
-#if(${entitySerialVersionUID})
+<#if entitySerialVersionUID?c == "true">
 import java.io.Serial;
-#end
-#if(${entityFieldUseJavaDoc})
 import java.io.Serializable;
-#end
-#if(${importEntityJavaPackages})
-#foreach(${pkg} in ${importEntityJavaPackages})
+</#if>
+<#if importEntityJavaPackages??>
+<#list importEntityJavaPackages as pkg>
 import ${pkg};
-#end
-#end
+</#list>
+</#if>
 
 /**
  * ${table.comment!}
@@ -27,32 +23,27 @@ import ${pkg};
  * @author ${author}
  * @since ${date}
  */
-#if(${entityLombokModel})
+<#if entityLombokModel?c == "true">
 @Data
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-#end
-#if(${activeRecord})
+</#if>
 @TableName("${table.name}")
-#end
-public class ${entity} #if(${entitySerialVersionUID}) implements Serializable#end {
+public class ${entity} <#if entitySerialVersionUID?c == "true">implements Serializable</#if> {
 
-#if(${entitySerialVersionUID})
+<#if entitySerialVersionUID?c == "true">
     @Serial
     private static final long serialVersionUID = 1L;
-#end
-#foreach($field in ${table.fields})
-#if(${field.keyFlag})
+</#if>
+<#list table.fields as field>
+<#if field.keyFlag?c == "true">
     @TableId(value = "${field.name}", type = IdType.AUTO)
-#end
-#foreach($attr in ${field.annotationAttributesList})
-    @${attr.type}(${attr.importType} = "${attr.value}")
-#end
+</#if>
     /**
      * ${field.comment!}
      */
     private ${field.propertyType} ${field.propertyName};
 
-#end
+</#list>
 }

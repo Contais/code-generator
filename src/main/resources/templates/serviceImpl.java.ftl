@@ -6,11 +6,11 @@ import ${package.Service}.${table.serviceName};
 import ${superServiceImplClassPackage};
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-#if(${importServiceImplJavaPackages})
-#foreach(${pkg} in ${importServiceImplJavaPackages})
+<#if importServiceImplJavaPackages??>
+<#list importServiceImplJavaPackages as pkg>
 import ${pkg};
-#end
-#end
+</#list>
+</#if>
 
 /**
  * ${table.comment!} Service 实现

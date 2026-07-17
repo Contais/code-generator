@@ -4,16 +4,11 @@ import ${package.Entity}.${entity};
 import ${package.Service}.${table.serviceName};
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
-#if(${restControllerStyle})
-import org.springframework.web.bind.annotation.RestController;
-#else
-import org.springframework.web.bind.annotation.Controller;
-#end
-#if(${importControllerJavaPackages})
-#foreach(${pkg} in ${importControllerJavaPackages})
+<#if importControllerJavaPackages??>
+<#list importControllerJavaPackages as pkg>
 import ${pkg};
-#end
-#end
+</#list>
+</#if>
 
 /**
  * ${table.comment!} Controller
@@ -21,13 +16,13 @@ import ${pkg};
  * @author ${author}
  * @since ${date}
  */
-#if(${restControllerStyle})
+<#if restControllerStyle?c == "true">
 @RestController
-#else
+<#else>
 @Controller
-#end
+</#if>
 @RequiredArgsConstructor
-@RequestMapping#if(${controllerMappingHyphenStyle})("${controllerMappingHyphen}")#end
+@RequestMapping<#if controllerMappingHyphenStyle?c == "true">("${controllerMappingHyphen}")</#if>
 public class ${table.controllerName} {
 
     private final ${table.serviceName} ${table.serviceName?uncap_first};

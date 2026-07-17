@@ -2,14 +2,12 @@ package ${package.Mapper};
 
 import ${package.Entity}.${entity};
 import ${superMapperClassPackage};
-#if(${mapperAnnotationClass})
-import ${mapperAnnotationClass};
-#end
-#if(${importMapperJavaPackages})
-#foreach(${pkg} in ${importMapperJavaPackages})
+import org.apache.ibatis.annotations.Mapper;
+<#if importMapperJavaPackages??>
+<#list importMapperJavaPackages as pkg>
 import ${pkg};
-#end
-#end
+</#list>
+</#if>
 
 /**
  * ${table.comment!} Mapper
@@ -17,9 +15,7 @@ import ${pkg};
  * @author ${author}
  * @since ${date}
  */
-#if(${mapperAnnotationClass})
-@${mapperAnnotationClass}
-#end
+@Mapper
 public interface ${table.mapperName} extends ${superMapperClass}<${entity}> {
 
 }
